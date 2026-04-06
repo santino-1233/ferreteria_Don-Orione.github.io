@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nuestra Historia – Don Orione</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#111214;--bg2:#18191c;--bg3:#1f2125;--bg4:#26282d;--red:#c0392b;--red-h:#e74c3c;--text:#d4d6da;--text-dim:#7a7f8a;--border:rgba(255,255,255,0.07);--r:6px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(17,18,20,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);height:64px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;}
+    .nav-brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
+    .nav-icon{width:36px;height:36px;border-radius:var(--r);background:var(--red);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .nav-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--text);letter-spacing:.06em;text-transform:uppercase;line-height:1.1;}
+    .nav-sub{font-size:.62rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;}
+    .nav-links{display:flex;gap:2rem;list-style:none;}
+    .nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--red);}
+    .nav-cta{background:var(--red);color:#f0f0f0;padding:.5rem 1.2rem;border-radius:var(--r);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s;}
+    .nav-cta:hover{background:var(--red-h);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+    .hamburger span{width:22px;height:2px;background:var(--text);display:block;}
+
+    .page-header{padding:110px 2rem 4rem;background:var(--bg2);border-bottom:1px solid var(--border);}
+    .page-header-inner{max-width:1140px;margin:0 auto;}
+    .breadcrumb{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;}
+    .breadcrumb span{color:var(--red);}
+    .page-header h1{font-family:'Oswald',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.6rem;line-height:1.1;}
+    .page-header h1 em{color:var(--red);font-style:normal;}
+    .page-header p{color:var(--text-dim);font-size:.95rem;font-weight:300;max-width:520px;line-height:1.7;}
+    .red-rule{width:50px;height:3px;background:var(--red);margin:1.2rem 0;}
+
+    main{max-width:1140px;margin:0 auto;padding:5rem 2rem;}
+
+    .section-label{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;}
+    .section-title{font-family:'Oswald',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2rem;}
+
+    /* INTRO GRID */
+    .story-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem;}
+    .story-text h2{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:1.2rem;line-height:1.15;}
+    .story-text p{font-size:.92rem;font-weight:300;color:var(--text-dim);line-height:1.9;margin-bottom:.9rem;}
+    .story-quote{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:var(--r);padding:2.5rem 2rem;text-align:center;}
+    .quote-mark{font-family:'Oswald',sans-serif;font-size:5rem;color:var(--red);line-height:.8;margin-bottom:.5rem;}
+    .quote-text{font-size:1.05rem;color:var(--text);line-height:1.6;font-style:italic;}
+
+    /* TIMELINE */
+    .timeline-wrap{margin-bottom:5rem;}
+    .timeline{position:relative;padding-left:2rem;}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--red),rgba(192,57,43,0.1));}
+    .tl-item{position:relative;padding-bottom:2.5rem;}
+    .tl-item:last-child{padding-bottom:0;}
+    .tl-dot{position:absolute;left:-2rem;top:4px;width:12px;height:12px;background:var(--red);border-radius:50%;border:2px solid var(--bg);box-shadow:0 0 0 2px var(--red);margin-left:-5px;}
+    .tl-tag{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.3rem;}
+    .tl-item h3{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:.35rem;}
+    .tl-item p{font-size:.88rem;font-weight:300;color:var(--text-dim);line-height:1.75;}
+
+    /* VALUES */
+    .values-wrap{margin-bottom:5rem;}
+    .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:0;}
+    .val-card{background:var(--bg2);padding:2rem 1.5rem;transition:background .2s;}
+    .val-card:hover{background:var(--bg3);}
+    .val-icon{font-size:1.8rem;margin-bottom:.8rem;}
+    .val-card h3{font-family:'Oswald',sans-serif;font-size:.95rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text);margin-bottom:.4rem;}
+    .val-card p{font-size:.83rem;color:var(--text-dim);line-height:1.65;font-weight:300;}
+
+    /* CTA */
+    .end-cta{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:var(--r);padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+    .end-cta h3{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:.3rem;}
+    .end-cta p{color:var(--text-dim);font-size:.88rem;font-weight:300;max-width:380px;}
+    .cta-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+    .btn-red{background:var(--red);color:#f0f0f0;padding:.85rem 1.8rem;border-radius:var(--r);font-weight:600;font-size:.85rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;transition:background .2s,transform .2s;display:inline-flex;align-items:center;gap:.5rem;}
+    .btn-red:hover{background:var(--red-h);transform:translateY(-2px);}
+    .btn-ghost{background:transparent;color:var(--text);padding:.85rem 1.8rem;border-radius:var(--r);font-weight:500;font-size:.85rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;transition:all .2s;border:1px solid var(--border);}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.25);color:#fff;}
+
+    footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem;}
+    .footer-bottom{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--text-dim);flex-wrap:wrap;gap:.5rem;}
+    .footer-bottom a{color:var(--red);text-decoration:none;}
+
+    .wa-fab{position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5);text-decoration:none;transition:transform .2s;animation:pulse 3s infinite 2s;}
+    .wa-fab:hover{transform:scale(1.1);animation:none;}
+    .wa-fab svg{width:28px;height:28px;fill:#f0f0f0;}
+    @keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 0 0 rgba(37,211,102,.5);}50%{box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 0 12px rgba(37,211,102,0);}}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    @media(max-width:768px){
+      .story-intro{grid-template-columns:1fr;}
+      .end-cta{flex-direction:column;}
+      .nav-links,.nav-cta{display:none;}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg2);padding:1.5rem 2rem;gap:1.2rem;border-top:1px solid var(--border);}
+      .hamburger{display:flex;}
+      .footer-bottom{justify-content:center;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-icon">🔨</div>
+    <div><div class="nav-name">Don Orione</div><div class="nav-sub">Corralón &amp; Ferretería</div></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="historia.html" class="active">Historia</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/5491135028285?text=Hola!%20Vi%20su%20web%20y%20quiero%20consultar." target="_blank" class="nav-cta">WhatsApp</a>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="breadcrumb">Inicio / <span>Nuestra Historia</span></p>
+    <h1>MÁS DE 20 AÑOS<br/><em>EN EL BARRIO</em></h1>
+    <div class="red-rule"></div>
+    <p>La historia de Don Orione es la historia de Florencio Varela. Conocé cómo empezó todo y por qué seguimos firmes.</p>
+  </div>
+</div>
+
+<main>
+  <div class="story-intro">
+    <div class="story-text reveal">
+      <h2>Un negocio familiar con raíces en Florencio Varela</h2>
+      <p>Don Orione nació de la convicción de que los vecinos merecen un lugar de confianza donde encontrar todo lo que necesitan para sus obras y reformas, a precios justos y con asesoramiento real.</p>
+      <p>Desde nuestros inicios apostamos por la calidad en los productos y, sobre todo, en la atención. Cada cliente que entra por nuestra puerta recibe el mismo trato que le daríamos a un vecino, porque eso es exactamente lo que son.</p>
+      <p>Hoy, con más de 20 años de trayectoria y miles de proyectos acompañados, seguimos siendo el mismo corralón de siempre: cercano, honesto y comprometido con cada obra.</p>
+    </div>
+    <div class="story-quote reveal">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">Cada ladrillo puesto en Florencio Varela lleva un poco de nosotros adentro.</p>
+    </div>
+  </div>
+
+  <div class="timeline-wrap">
+    <div class="reveal"><p class="section-label">Trayectoria</p><h2 class="section-title">Los hitos que nos definen</h2></div>
+    <div class="timeline">
+      <div class="tl-item reveal"><div class="tl-dot"></div><p class="tl-tag">Los comienzos</p><h3>Nace Don Orione</h3><p>Con un local pequeño y mucho esfuerzo familiar, abrimos las puertas por primera vez en Florencio Varela. El objetivo era claro: ser el proveedor de confianza de la zona.</p></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><p class="tl-tag">Crecimiento</p><h3>Ampliación del local y el catálogo</h3><p>La confianza de nuestros clientes nos permitió crecer. Sumamos más líneas de productos: ferretería, plomería, electricidad y materiales de terminación.</p></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><p class="tl-tag">Consolidación</p><h3>Referentes del barrio</h3><p>Don Orione se convirtió en el punto de referencia para constructores, plomeros, electricistas y vecinos de toda la zona sur.</p></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><p class="tl-tag">Hoy</p><h3>Tradición y presencia digital</h3><p>Seguimos siendo el mismo negocio familiar de siempre, con catálogo en Facebook y presencia digital para llegar a más personas. La esencia no cambia.</p></div>
+    </div>
+  </div>
+
+  <div class="values-wrap">
+    <div class="reveal"><p class="section-label">Lo que nos mueve</p><h2 class="section-title">Nuestros valores</h2></div>
+    <div class="values-grid reveal">
+      <div class="val-card"><div class="val-icon">🤝</div><h3>Confianza</h3><p>Más de dos décadas construyendo relaciones basadas en la honestidad y el trato justo con cada cliente.</p></div>
+      <div class="val-card"><div class="val-icon">⭐</div><h3>Calidad</h3><p>Solo trabajamos con materiales y marcas que cumplen con los estándares que nuestros clientes merecen.</p></div>
+      <div class="val-card"><div class="val-icon">💬</div><h3>Asesoramiento</h3><p>Nuestro equipo te ayuda a elegir el material correcto. No vendemos, asesoramos.</p></div>
+      <div class="val-card"><div class="val-icon">🏠</div><h3>Compromiso local</h3><p>Somos parte del tejido de Florencio Varela. Cada obra acompañada es un orgullo para toda nuestra familia.</p></div>
+    </div>
+  </div>
+
+  <div class="end-cta reveal">
+    <div><h3>¿Empezás un proyecto?</h3><p>Tenemos todo lo que necesitás y el asesoramiento para que elijas bien desde el primer día.</p></div>
+    <div class="cta-btns">
+      <a href="productos.html" class="btn-red">Ver Productos →</a>
+      <a href="https://wa.me/5491135028285?text=Hola!%20Vi%20su%20web%20y%20quiero%20consultar%20sobre%20materiales%20y%20precios." target="_blank" class="btn-ghost">WhatsApp</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2024 Corralón y Ferretería Don Orione — Florencio Varela, Bs. As.</p>
+    <a href="index.html">← Volver al inicio</a>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/5491135028285?text=Hola!%20Vi%20su%20web%20y%20quiero%20consultar%20sobre%20materiales%20y%20precios." target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script>
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
